@@ -1,13 +1,13 @@
-import palx from 'palx'
+const palx = require('palx')
 
-export const breakpoints = [
+const breakpoints = [
   32,
   48,
   64,
   80
 ]
 
-export const space = [
+const space = [
   0,
   4,
   8,
@@ -17,7 +17,7 @@ export const space = [
   128,
 ]
 
-export const fontSizes = [
+const fontSizes = [
   12,
   14,
   16,
@@ -30,7 +30,7 @@ export const fontSizes = [
   96
 ]
 
-export const weights = [
+const weights = [
   400,
   700
 ]
@@ -53,16 +53,22 @@ const flattened = Object.keys(palette)
 
 // todo: flatten
 
-export const colors = Object.assign({}, flattened, {
+const colors = Object.assign({}, flattened, {
   black: '#000',
   white: '#fff'
 })
 
-export const radius = 4
-export const font = `-apple-system, BlinkMacSystemFont, sans-serif`
-export const monospace = '"SF Mono", "Roboto Mono", Menlo, monospace'
+const radii = {
+  radius: 4
+}
+const font = `-apple-system, BlinkMacSystemFont, sans-serif`
+const monospace = '"SF Mono", "Roboto Mono", Menlo, monospace'
 
-export default {
+const boxShadows = [
+  `inset 0 0 0 1px ${colors.gray2}, 0 0 4px ${colors.gray2}`,
+]
+
+module.exports = {
   breakpoints,
   space,
   fontSizes,
@@ -70,5 +76,5 @@ export default {
   font,
   monospace,
   colors,
-  radius,
+  radii,
 }

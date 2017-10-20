@@ -23,12 +23,13 @@
   "author": "Brent Jackson",
   "license": "MIT",
   "dependencies": {
+    "@compositor/lab": "^1.0.0-32",
     "grid-styled": "^2.0.0-10",
     "palx": "^1.0.2",
     "prop-types": "^15.5.10",
     "recompose": "^0.23.5",
     "styled-components": "^2.1.2",
-    "styled-system": "^1.0.0-12",
+    "styled-system": "^1.0.8",
     "tag-hoc": "^1.0.0"
   },
   "devDependencies": {

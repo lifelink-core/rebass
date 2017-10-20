@@ -1,120 +1,129 @@
-import React from 'react'
-import {
-  bool,
-  string,
-  number,
-  oneOf,
-  oneOfType,
-} from 'prop-types'
-import {
-  space,
-  fontSizes,
-  weights,
-  colors,
-} from './theme'
-import {
-  idx,
-  px,
-  color,
-  darken,
-  caps,
-  align,
-} from './util'
-import { Flex, Box } from './grid'
-import DonutBase from './DonutBase'
-import SelectBase from './SelectBase'
 
-const numberOrString = oneOfType([ number, string ])
-const bold = props => idx('weights.1', props.theme)
+const px = n => typeof n === 'number' ? n + 'px' : n
+const darken = n => `rgba(0, 0, 0, ${n})`
 
 const components = [
+  {
+    name: 'Box',
+    type: 'div',
+    props: {},
+    style: {},
+    system: []
+  },
+  {
+    name: 'Flex',
+    type: 'div',
+    props: {},
+    style: {
+      display: 'flex'
+    },
+    system: [
+      'alignItems',
+      'justifyContent',
+      'flexWrap',
+      'flexDirection'
+    ]
+  },
   // Buttons
   {
     name: 'Button',
     type: 'button',
     props: {
-      f: 1,
+      fontSize: 1,
+      fontWeight: 'bold',
       m: 0,
       pl: 3,
       pr: 3,
       pt: 2,
       pb: 2,
       color: 'white',
+      bg: 'blue',
+      borderWidth: 0,
+      borderRadius: 'radius'
     },
-    style: props => ({
+    style: {
       fontFamily: 'inherit',
-      fontWeight: bold(props),
       lineHeight: 16 / 14,
       display: 'inline-block',
       verticalAlign: 'middle',
       textAlign: 'center',
       textDecoration: 'none',
-      borderRadius: px(props.theme.radius),
-      border: 0,
       appearance: 'none',
-      backgroundColor: color(props)(props.bg),
       '&:hover': {
         boxShadow: `inset 0 0 0 999px ${darken(1/8)}`
       },
       '&:focus': {
         outline: 0,
-        boxShadow: `0 0 0 2px ${color(props)(props.bg)}`
+        boxShadow: `0 0 0 2px`
       },
       '&:active': {
-        backgroundColor: color(props)(props.bg, 6),
         boxShadow: `inset 0 0 8px ${darken(1/4)}`
       },
       '&:disabled': {
         opacity: 1/4
       },
-    })
+    },
+    system: [
+      'fontWeight',
+      'borderWidth',
+      'borderRadius',
+      'active'
+    ]
   },
   {
     name: 'ButtonOutline',
     type: 'Button',
     props: {
       color: 'blue',
-      bg: 'transparent'
-    },
-    style: props => ({
-      boxShadow: `inset 0 0 0 2px`,
-      '&:hover': {
-        color: color(props)('white'),
-        backgroundColor: color(props)(props.color)
+      bg: 'transparent',
+      hover: {
+        color: 'white',
+        backgroundColor: 'blue'
       },
+      active: {
+        color: 'white',
+        backgroundColor: 'blue'
+      }
+    },
+    style: {
+      boxShadow: `inset 0 0 0 2px`,
       '&:focus': {
         boxShadow: `inset 0 0 0 2px, 0 0 0 2px`
       },
       '&:active': {
-        color: color(props)('white'),
-        backgroundColor: color(props)(props.color),
-        boxShadow: `inset 0 0 0 2px ${color(props)(props.color)}, inset 0 0 8px ${darken(1/4)}`
+        boxShadow: `inset 0 0 0 2px, inset 0 0 0 8px ${darken(1/4)}`
       }
-    })
+    },
+    system: [
+      'hover',
+      'active'
+    ]
   },
   {
     name: 'ButtonCircle',
     type: 'Button',
     props: {
       pl: 3,
-      pr: 3
+      pr: 3,
+      borderRadius: 'radius'
     },
-    style: props => ({
-      borderRadius: px(99999)
-    })
+    style: {},
+    system: [
+      'borderRadius'
+    ]
   },
   {
     name: 'ButtonTransparent',
     type: 'Button',
     props: {
       color: 'inherit',
-      bg: 'transparent'
-    },
-    style: props => ({
-      '&:hover': {
-        color: color(props)(props.color),
+      bg: 'transparent',
+      hover: {
+        color: 'inherit',
         backgroundColor: 'transparent'
-      },
+      }
+    },
+    style: {
       '&:focus': {
         boxShadow: `inset 0 0 0 2px, 0 0 0 2px`
       },
@@ -122,7 +131,10 @@ const components = [
         backgroundColor: 'transparent',
         boxShadow: `inset 0 0 0 2px, inset 0 0 8px ${darken(1/4)}`
       }
-    })
+    },
+    system: [
+      'hover'
+    ]
   },
   {
     name: 'Link',
@@ -138,16 +150,16 @@ const components = [
     props: {
       f: 1,
       p: 2,
+      fontWeight: 'bold',
+      bg: 'transparent'
     },
-    style: props => ({
+    style: {
       display: 'inline-flex',
       alignItems: 'center',
       alignSelf: 'stretch',
-      fontWeight: bold(props),
       textDecoration: 'none',
       whiteSpace: 'nowrap',
       color: 'inherit',
-      backgroundColor: props.active ? darken(1/4) : 'transparent',
       cursor: 'pointer',
       '&:hover': {
         backgroundColor: darken(1/16)
@@ -155,10 +167,10 @@ const components = [
       '&:disabled': {
         opacity: 1/4
       },
-    }),
-    propTypes: {
-      active: bool
-    }
+    },
+    system: [
+      'fontWeight'
+    ]
   },
   {
     name: 'BlockLink',
@@ -176,63 +188,57 @@ const components = [
     name: 'Text',
     type: 'p',
     props: {
-      m: 0
+      m: 0,
     },
-    style: props => Object.assign(
-      {
-        fontWeight: props.bold
-          ? bold(props)
-          : idx('weights.0', props.theme)
-      },
-      align(props),
-      caps(props)
-    ),
-    propTypes: {
-      left: bool,
-      center: bool,
-      right: bool,
-      justify: bool,
-      bold: bool,
-      caps: bool
-    }
+    style: {},
+    system: [
+      'fontWeight',
+      'textAlign'
+    ]
   },
   {
     name: 'Heading',
     type: 'Text',
     props: {
+      // todo: add is prop support
       is: 'h2',
-      f: 5,
+      fontSize: 5,
       m: 0,
-      bold: true
+      fontWeight: 'bold'
     },
     style: {
       lineHeight: 1.25
     },
-    propTypes: {
-      left: bool,
-      center: bool,
-      right: bool,
-      justify: bool,
-      bold: bool,
-      caps: bool
-    }
+    system: [
+      'fontWeight'
+    ]
   },
   {
     name: 'Subhead',
     type: 'Heading',
     props: {
       is: 'h3',
-      f: 4,
+      fontSize: 4,
       m: 0,
     },
     style: {}
+  },
+  {
+    name: 'Caps',
+    type: 'Text',
+    props: {
+    },
+    style: {
+      textTransform: 'uppercase'
+    },
+    system: []
   },
   {
     name: 'Small',
     type: 'Text',
     props: {
       is: 'small',
-      f: 0
+      fontSize: 0
     },
     style: {}
   },
@@ -241,7 +247,7 @@ const components = [
     type: 'Text',
     props: {
       is: 'p',
-      f: 3,
+      fontSize: 3,
       m: 0
     },
     style: {
@@ -252,22 +258,25 @@ const components = [
     name: 'Pre',
     type: 'pre',
     props: {
-      f: 1,
+      fontSize: 1,
       m: 0,
     },
-    style: props => ({
-      fontFamily: props.theme.monospace,
+    style: {
+      // todo
+      // fontFamily: props.theme.monospace,
+      fontFamily: 'Menlo, monospace',
       overflow: 'auto'
-    })
+    }
   },
   {
     name: 'Code',
     type: 'code',
     props: {
-      f: 1,
+      fontSize: 1,
     },
     style: props => ({
-      fontFamily: props.theme.monospace
+      // fontFamily: props.theme.monospace
+      fontFamily: 'Menlo, monospace'
     })
   },
   {
@@ -284,7 +293,7 @@ const components = [
     props: {
       is: 'blockquote',
       m: 0,
-      f: 3,
+      fontSize: 3,
     },
     style: {}
   },
@@ -312,7 +321,7 @@ const components = [
     name: 'Label',
     type: 'label',
     props: {
-      f: 1,
+      fontSize: 1,
       mb: 1
     },
     style: {
@@ -325,31 +334,37 @@ const components = [
     type: 'input',
     props: {
       type: 'text',
-      f: 'inherit',
+      fontSize: 'inherit',
       p: 1,
       m: 0,
       w: 1,
       color: 'inherit',
-      bg: 'transparent'
+      bg: 'transparent',
+      borderRadius: 'radius'
     },
-    style: props => ({
+    style: {
       fontFamily: 'inherit',
       lineHeight: 'inherit',
       display: 'inline-block',
       verticalAlign: 'middle',
       border: 0,
-      boxShadow: `inset 0 0 0 1px ${color(props)('gray2')}`,
-      borderRadius: px(props.theme.radius),
+      boxShadow: `inset 0 0 0 1px ${darken(1/4)}`,
       appearance: 'none',
       '&:focus': {
         outline: 'none',
-        boxShadow: `inset 0 0 0 1px ${color(props)('blue')}`,
+        boxShadow: `inset 0 0 0 1px ${darken(1/4)}`,
+        // boxShadow: `inset 0 0 0 1px ${color(props)('blue')}`,
       },
       '&:disabled': {
         opacity: 1/4
       },
-    })
+    },
+    system: [
+      'borderRadius',
+      'focus'
+    ]
   },
+  /* todo handle with jsx
   {
     name: 'Select',
     type: SelectBase,
@@ -376,6 +391,7 @@ const components = [
       }
     })
   },
+  */
   {
     name: 'Textarea',
     type: 'textarea',
@@ -384,23 +400,23 @@ const components = [
       m: 0,
       w: 1,
       color: 'inherit',
-      bg: 'transparent'
+      bg: 'transparent',
+      borderRadius: 'radius'
     },
-    style: props => ({
+    style: {
       fontFamily: 'inherit',
       fontSize: 'inherit',
       border: 0,
-      boxShadow: `inset 0 0 0 1px ${color(props)('gray2')}`,
-      borderRadius: px(props.theme.radius),
+      boxShadow: `inset 0 0 0 1px ${darken(1/4)}`,
       appearance: 'none',
       '&:focus': {
         outline: 'none',
-        boxShadow: `inset 0 0 0 1px ${color(props)('blue')}`,
+        boxShadow: `inset 0 0 0 1px ${darken(1/4)}`,
       },
       '&:disabled': {
         opacity: 1/4
       },
-    })
+    }
   },
   {
     name: 'Checkbox',
@@ -409,7 +425,7 @@ const components = [
       type: 'checkbox',
       mr: 1
     },
-    style: props => ({})
+    style: {}
   },
   {
     name: 'Radio',
@@ -418,7 +434,7 @@ const components = [
       type: 'radio',
       mr: 1
     },
-    style: props => ({})
+    style: {}
   },
   {
     name: 'Slider',
@@ -429,15 +445,15 @@ const components = [
       mb: 2,
       ml: 0,
       mr: 0,
+      bg: 'gray2',
       type: 'range'
     },
-    style: props => ({
+    style: {
       display: 'block',
-      height: px(idx('space.1', props.theme)),
+      height: '4px',
       cursor: 'pointer',
       color: 'inherit',
       borderRadius: px(99999),
-      backgroundColor: color(props)('gray2'),
       appearance: 'none',
       '&::-webkit-slider-thumb': {
         width: px(16),
@@ -451,7 +467,7 @@ const components = [
         '&::-webkit-slider-thumb': {
         }
       }
-    })
+    }
   },
 
   {
@@ -467,16 +483,17 @@ const components = [
   {
     name: 'Avatar',
     type: 'img',
-    props: {},
-    style: props => ({
+    props: {
+      borderRadius: 99999
+    },
+    style: {
       display: 'inline-block',
-      width: px(props.size || 48),
-      height: px(props.size || 48),
-      borderRadius: px(99999)
-    }),
-    propTypes: {
-      size: number
-    }
+      width: px(48),
+      height: px(48)
+    },
+    system: [
+      'borderRadius'
+    ]
   },
 
   {
@@ -484,20 +501,27 @@ const components = [
     type: 'div',
     props: {
       w: 1,
+      pb: '75%'
       // ratio: 3/4 // How does styled-components handle this??
       // Fix this once non-whitelisted styled-components is out
     },
-    style: props => ({
-      backgroundImage: props.src ? `url(${props.src})` : 'none',
+    style: {
+      // todo
+      // backgroundImage: props.src ? `url(${props.src})` : 'none',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       height: 0,
-      paddingBottom: ((props.ratio || 3/4) * 100) + '%'
-    }),
-    propTypes: {
-      src: string,
-      ratio: number
-    }
+      // todo
+      // paddingBottom: ((props.ratio || 3/4) * 100) + '%'
+    },
+    system: [
+      // 'backgroundImage'
+      // [ 'style', {
+      //    prop: 'image',
+      //    cssProperty: 'backgroundImage',
+      //    transform: fn?
+      // } ]
+    ]
   },
 
   // Layout
@@ -509,30 +533,40 @@ const components = [
       ml: 'auto',
       mr: 'auto'
     },
-    style: props => ({
-      maxWidth: px(props.maxWidth || idx('maxWidth', props.theme) || 1024)
-    }),
-    propTypes: {
-      maxWidth: numberOrString
-    }
+    style: {
+      maxWidth: 1024
+      // todo
+      // maxWidth: px(props.maxWidth || idx('maxWidth', props.theme) || 1024)
+    },
+    system: []
   },
   {
     name: 'Divider',
     type: 'hr',
     props: {
       mt: 2,
-      mb: 2
+      mb: 2,
+      borderWidth: 1,
+      borderBottom: true,
+      color: 'gray'
     },
-    style: {
-      border: 0,
-      borderBottomWidth: px(1),
-      borderBottomStyle: 'solid',
-    }
+    style: {},
+    system: [
+      'borderWidth',
+      // 'borderColor'
+    ]
   },
   {
     name: 'Border',
     type: 'div',
-    props: {},
+    props: {
+      borderWidth: 1
+    },
+    system: [
+      'borderWidth',
+      'borderColor'
+    ],
+    /*
     style: props => {
       const w = px(props.borderWidth || 1)
       const borderWidth = (!props.top && !props.right && !props.bottom && !props.left)
@@ -551,36 +585,33 @@ const components = [
         color: 'inherit'
       }, borderWidth, directions)
     },
-    propTypes: {
-      top: bool,
-      right: bool,
-      bottom: bool,
-      left: bool,
-      width: number,
-      color: string,
-    }
+    */
   },
   {
     name: 'Media',
     type: 'div',
     props: {},
-    style: props => ({
+    style: {
       display: 'flex',
       alignItems: 'center'
-    })
+    }
   },
 
   {
     name: 'Card',
     type: 'div',
     props: {
-      bg: 'white'
+      bg: 'white',
+      borderRadius: 'radius',
+      boxShadow: 0
     },
-    style: props => ({
+    style: {
       overflow: 'hidden',
-      boxShadow: `inset 0 0 0 1px ${color(props)('gray2')}, 0 0 4px ${color(props)('gray2')}`,
-      borderRadius: px(props.theme.radius)
-    })
+    },
+    system: [
+      'borderRadius',
+      'boxShadow'
+    ]
   },
   {
     name: 'Banner',
@@ -588,7 +619,7 @@ const components = [
     props: {
       p: [ 3, 4 ]
     },
-    style: props => ({
+    style: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -596,48 +627,60 @@ const components = [
       minHeight: '80vh',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      backgroundImage: props.backgroundImage ? `url(${props.backgroundImage})` : 'none',
-    }),
-    propTypes: {
-      backgroundImage: string
-    }
+      // todo
+      // backgroundImage: props.backgroundImage ? `url(${props.backgroundImage})` : 'none',
+    },
+    system: [
+    ]
   },
   {
     name: 'Panel',
     type: 'div',
-    props: {},
-    style: props => ({
+    props: {
+      borderRadius: 'radius'
+    },
+    style: {
       overflow: 'hidden',
-      borderRadius: px(props.theme.radius),
       borderWidth: px(1),
       borderStyle: 'solid',
-    })
+    },
+    system: [
+      'borderRadius'
+    ]
   },
   {
     name: 'PanelHeader',
     type: 'header',
     props: {
-      f: 2,
+      fontSize: 2,
       p: 2,
+      fontWeight: 'bold',
+      borderWidth: 1,
+      borderBottom: true
     },
-    style: props => ({
-      fontWeight: bold(props),
-      borderBottomWidth: px(1),
-      borderBottomStyle: 'solid',
-    })
+    style: {},
+    system: [
+      'fontWeight',
+      'borderWidth',
+      'borderColor'
+    ]
   },
   {
     name: 'PanelFooter',
     type: 'footer',
     props: {
-      f: 1,
+      fontSize: 1,
       p: 2,
+      fontWeight: 'bold',
+      borderWidth: 1,
+      borderTop: 'true'
     },
-    style: props => ({
-      fontWeight: bold(props),
-      borderTopWidth: px(1),
-      borderTopStyle: 'solid',
-    })
+    style: {},
+    system: [
+      'fontWeight',
+      'borderWidth',
+      'borderColor'
+    ]
   },
 
   // UI
@@ -647,24 +690,27 @@ const components = [
     props: {
       w: 1,
       m: 0,
-      bg: 'gray2'
+      bg: 'gray2',
+      borderRadius: 'radius'
     },
-    style: props => ({
+    style: {
       display: 'block',
-      height: px(idx('space.1', props.theme)),
-      borderRadius: px(props.theme.radius),
+      height: px(4),
       overflow: 'hidden',
       appearance: 'none',
       '&::-webkit-progress-bar': {
-        backgroundColor: color(props)(props.bg)
+        backgroundColor: 'transparent'
       },
       '&::-webkit-progress-value': {
-        backgroundColor: color(props)(props.color)
+        backgroundColor: 'currentcolor'
       },
       '&::-moz-progress-bar': {
-        backgroundColor: color(props)(props.color)
+        backgroundColor: 'currentcolor'
       }
-    })
+    },
+    system: [
+      'borderRadius'
+    ]
   },
   {
     name: 'Message',
@@ -674,16 +720,20 @@ const components = [
       pr: 3,
       pt: 2,
       pb: 2,
+      fontWeight: 'bold',
       color: 'white',
       bg: 'blue'
     },
-    style: props => ({
+    style: {
       display: 'flex',
       alignItems: 'center',
-      minHeight: px(48),
-      fontWeight: bold(props)
-    })
+      minHeight: px(48)
+    },
+    system: [
+      'fontWeight'
+    ]
   },
+  /* todo
   {
     name: 'Group',
     type: 'div',
@@ -704,6 +754,7 @@ const components = [
       }
     }
   },
+  */
 
   {
     name: 'Toolbar',
@@ -725,42 +776,51 @@ const components = [
     name: 'Badge',
     type: 'div',
     props: {
-      f: 0,
+      fontSize: 0,
+      fontWeight: 'bold',
       p: 1,
       ml: 1,
       mr: 1,
+      borderRadius: 'radius',
       color: 'white',
       bg: 'blue'
     },
-    style: props => ({
-      fontWeight: bold(props),
+    style: {
       display: 'inline-block',
-      verticalAlign: 'middle',
-      borderRadius: px(props.theme.radius)
-    })
+      verticalAlign: 'middle'
+    },
+    system: [
+      'fontWeight',
+      'borderRadius'
+    ]
   },
   {
     name: 'Circle',
     type: 'Badge',
     props: {
       color: 'white',
-      bg: 'blue'
+      bg: 'blue',
     },
-    style: props => ({
+    style: {
       textAlign: 'center',
-      width: px(props.size || 24),
-      height: px(props.size || 24),
+      // todo: props.size
+      width: px(24),
+      height: px(24),
       borderRadius: px(99999)
-    })
+    },
+    system: []
   },
   {
     name: 'Overlay',
     type: 'div',
     props: {
       p: 3,
-      bg: 'white'
+      bg: 'white',
+      borderRadius: 'radius'
     },
-    style: props => ({
+    style: {
+      // todo
+      display: 'none',
       position: 'fixed',
       top: '50%',
       left: '50%',
@@ -768,44 +828,46 @@ const components = [
       maxWidth: '100vw',
       maxHeight: '100vh',
       overflow: 'auto',
-      borderRadius: px(props.theme.radius),
       boxShadow: `0 0 0 60vmax ${darken(1/2)}, 0 0 32px ${darken(1/4)}`,
-    })
+    }
   },
 
   {
     name: 'Tabs',
     type: 'div',
-    props: {},
-    style: props => ({
+    props: {
+      borderColor: 'gray2'
+    },
+    style: {
       display: 'flex',
       borderBottomWidth: px(1),
       borderBottomStyle: 'solid',
-      borderColor: color(props)('gray2')
-    })
+    }
   },
   {
     name: 'TabItem',
     type: 'a',
     props: {
-      f: 1,
+      fontSize: 1,
+      fontWeight: 'bold',
       mr: 3,
       pt: 2,
       pb: 2,
-    },
-    style: props => ({
-      textDecoration: 'none',
-      fontWeight: bold(props),
-      color: props.active ? color(props)('blue') : 'inherit',
-      borderBottomWidth: props.active ? 2 : 0,
-      borderBottomStyle: 'solid',
-      '&:hover': {
-        color: color(props)('blue'),
+      borderWidth: 2,
+      borderBottom: true,
+      hover: {
+        color: 'blue'
       }
-    }),
-    propTypes: {
-      active: bool
-    }
+    },
+    style: {
+      textDecoration: 'none',
+      // todo?
+      // color: props.active ? color(props)('blue') : 'inherit',
+      // borderBottomWidth: props.active ? 2 : 0,
+    },
+    system: [
+      'hover'
+    ]
   },
 
   {
@@ -813,103 +875,89 @@ const components = [
     type: 'button',
     props: {
       m: 0,
+      borderWidth: 4,
+      hover: {
+        backgroundColor: 'blue'
+      },
+      focus: {
+        backgroundColor: 'blue'
+      }
     },
-    style: props => ({
+    style: {
       padding: 0,
-      width: px(idx('space.3', props.theme)),
-      height: px(idx('space.3', props.theme)),
-      borderWidth: px(4),
+      width: px(16),
+      height: px(16),
       borderStyle: 'solid',
       borderColor: 'transparent',
       backgroundClip: 'padding-box',
       borderRadius: px(99999),
-      backgroundColor: props.active ? 'currentcolor' : darken(1/4),
+      // todo
+      // backgroundColor: props.active ? 'currentcolor' : darken(1/4),
       appearance: 'none',
-      '&:hover': {
-        backgroundColor: color(props)('blue'),
-      },
-      '&:focus': {
-        backgroundColor: color(props)('blue'),
-      },
       '&:disabled': {
         opacity: 1/4
       }
-    }),
-    propTypes: {
-      active: bool
-    }
+    },
+    system: [
+      'borderWidth',
+      'hover',
+      'focus'
+    ]
   },
 
   {
     name: 'Relative',
     type: 'div',
     props: {},
-    style: props => ({
+    style: {
       position: 'relative',
-      zIndex: props.z
-    })
+      // use style prop?
+      // zIndex: props.z
+    }
   },
+  /*
   {
     name: 'Absolute',
     type: 'div',
     props: {},
-    style: props => ({
+    style: {
       position: 'absolute',
-      top: props.top ? 0 : null,
-      right: props.right ? 0 : null,
-      bottom: props.bottom ? 0 : null,
-      left: props.left ? 0 : null,
-      zIndex: props.z
-    }),
-    propTypes: {
-      top: bool,
-      right: bool,
-      bottom: bool,
-      left: bool,
-      z: number
-    }
+      // top: props.top ? 0 : null,
+      // right: props.right ? 0 : null,
+      // bottom: props.bottom ? 0 : null,
+      // left: props.left ? 0 : null,
+      // zIndex: props.z
+    },
   },
   {
     name: 'Fixed',
     type: 'div',
     props: {},
-    style: props => ({
+    style: {
       position: 'fixed',
-      top: props.top ? 0 : null,
-      right: props.right ? 0 : null,
-      bottom: props.bottom ? 0 : null,
-      left: props.left ? 0 : null,
-      zIndex: props.z
-    }),
-    propTypes: {
-      top: bool,
-      right: bool,
-      bottom: bool,
-      left: bool,
-      z: number
+      // top: props.top ? 0 : null,
+      // right: props.right ? 0 : null,
+      // bottom: props.bottom ? 0 : null,
+      // left: props.left ? 0 : null,
+      // zIndex: props.z
     }
   },
   {
     name: 'Sticky',
     type: 'div',
     props: {},
-    style: props => (`
-      position: -webkit-sticky;
-      position: sticky;
-      top: ${props.top ? 0 : null};
-      right: ${props.right ? 0 : null};
-      bottom: ${props.bottom ? 0 : null};
-      left: ${props.left ? 0 : null};
-      z-index: ${props.z};
-    `),
-    propTypes: {
-      top: bool,
-      right: bool,
-      bottom: bool,
-      left: bool,
-      z: number
+    style: {
+      position: '-webkit-sticky',
+      position: 'sticky'
+      // top: ${props.top ? 0 : null};
+      // right: ${props.right ? 0 : null};
+      // bottom: ${props.bottom ? 0 : null};
+      // left: ${props.left ? 0 : null};
+      // z-index: ${props.z};
     }
   },
+  */
+  /* yeeesh
   {
     name: 'Drawer',
     type: 'Fixed',
@@ -965,7 +1013,9 @@ const components = [
       ])
     }
   },
+  */
 
+    /*
   {
     name: 'Carousel',
     type: 'div',
@@ -986,18 +1036,19 @@ const components = [
       index: number
     }
   },
+  */
   {
     name: 'ScrollCarousel',
     type: 'div',
     props: {},
-    style: props => ({
+    style: {
       width: '100%',
       overflow: 'auto',
       whiteSpace: 'nowrap',
       scrollSnapPointsX: 'repeat(100%)',
       scrollSnapType: 'mandatory',
       scrollSnapDestination: '0% 100%',
-    })
+    }
   },
   {
     name: 'CarouselSlide',
@@ -1006,12 +1057,13 @@ const components = [
       w: 1,
       p: 3
     },
-    style: props => ({
+    style: {
       display: 'inline-block',
       verticalAlign: 'middle'
-    })
+    }
   },
 
+  /*
   {
     name: 'Tooltip',
     type: 'div',
@@ -1060,7 +1112,9 @@ const components = [
       }
     })
   },
+  */
 
+  /*
   {
     name: 'Switch',
     type: 'div',
@@ -1093,6 +1147,7 @@ const components = [
       }
     })
   },
+  */
 
   {
     name: 'Close',
@@ -1102,13 +1157,14 @@ const components = [
       f: 3,
       children: '×'
     },
-    style: props => ({
+    style: {
       lineHeight: 1,
       width: px(24),
       height: px(24)
-    })
+    }
   },
 
+  /*
   {
     name: 'Star',
     type: 'div',
@@ -1135,28 +1191,34 @@ const components = [
       }
     })
   },
+  */
 
   {
-    name: 'Arrow',
+    name: 'ArrowDown',
     type: 'div',
     props: {},
-    style: props => {
-      const borderTop = props.direction === 'down' ? { borderTop: '.4375em solid' } : null
-      const borderBottom = props.direction === 'up' ? { borderBottom: '.4375em solid' } : null
-      return Object.assign({
-        display: 'inline-block',
-        width: 0,
-        height: 0,
-        verticalAlign: 'middle',
-        borderRight: '.3125em solid transparent',
-        borderLeft: '.3125em solid transparent',
-      }, borderTop, borderBottom)
-    },
-    propTypes: {
-      direction: oneOf([ 'up', 'down' ])
-    },
-    defaultProps: {
-      direction: 'down'
+    style: {
+      display: 'inline-block',
+      width: 0,
+      height: 0,
+      verticalAlign: 'middle',
+      borderRight: '.3125em solid transparent',
+      borderLeft: '.3125em solid transparent',
+      borderTop: '.4375em solid'
+    }
+  },
+  {
+    name: 'ArrowUp',
+    type: 'div',
+    props: {},
+    style: {
+      display: 'inline-block',
+      width: 0,
+      height: 0,
+      verticalAlign: 'middle',
+      borderRight: '.3125em solid transparent',
+      borderLeft: '.3125em solid transparent',
+      borderBottom: '.4375em solid'
     }
   },
 
@@ -1164,11 +1226,13 @@ const components = [
     name: 'Embed',
     type: 'div',
     props: {},
-    style: props => ({
+    style: {
       position: 'relative',
       height: 0,
       padding: 0,
-      paddingBottom: `${(props.ratio || 9 / 16) * 100}%`,
+      paddingBottom: `${9 / 16 * 100}%`,
+      // todo
+      // paddingBottom: `${(props.ratio || 9 / 16) * 100}%`,
       overflow: 'hidden',
       '& > iframe': {
         position: 'absolute',
@@ -1179,9 +1243,10 @@ const components = [
         left: 0,
         border: 0
       }
-    })
+    }
   },
 
+  /* todo handle with jsx
   {
     name: 'Donut',
     type: DonutBase,
@@ -1192,10 +1257,11 @@ const components = [
     },
     style:  {}
   },
+  */
 
   {
     name: 'Row',
-    type: Flex,
+    type: 'Flex',
     props: {
       mx: -3,
     },
@@ -1203,7 +1269,7 @@ const components = [
   },
   {
     name: 'Column',
-    type: Box,
+    type: 'Box',
     props: {
       px: 3,
       mb: 4,
@@ -1213,4 +1279,4 @@ const components = [
   },
 ]
 
-export default components
+module.exports = components
