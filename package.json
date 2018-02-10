@@ -23,7 +23,7 @@
   "author": "Brent Jackson",
   "license": "MIT",
   "dependencies": {
-    "@compositor/lab": "^1.0.0-32",
+    "@compositor/lab": "^1.0.0-37",
     "grid-styled": "^2.0.0-10",
     "palx": "^1.0.2",
     "prop-types": "^15.5.10",
