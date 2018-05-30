@@ -1,14 +1,22 @@
 {
   "private": true,
   "scripts": {
-    "start": "x0 dev pages -op 9000",
+    "start": "x0 dev pages -p 9000",
     "build": "x0 build pages",
     "svg": "scrs src/Logo.js --svg > logo.svg",
     "card": "repng src/Card.js -w 1024 -h 512 -d -f card.png"
   },
   "devDependencies": {
-    "@compositor/kit": "^1.0.35",
-    "@compositor/x0": "^5.0.1",
+    "@compositor/kit": "^1.0.37",
+    "@compositor/md": "^1.0.34",
+    "@compositor/md-loader": "^1.0.34",
+    "@compositor/x0": "^5.0.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "react-live": "^1.10.1",
     "rebass": "^2.0.0-2",
     "refunk": "^3.0.1",
     "repng": "^3.0.0",
@@ -43,7 +51,7 @@
     "links": [
       {
         "rel": "stylesheet",
-        "href": "https://fonts.googleapis.com/css?family=Roboto+Mono"
+        "href": "//fonts.googleapis.com/css?family=Roboto+Mono"
       }
     ]
   }
