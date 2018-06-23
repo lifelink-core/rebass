@@ -1,4 +1,4 @@
-import chroma from 'chroma-js'
+import Color from 'color'
 
 const names = [
   'red',      // 0
@@ -34,12 +34,12 @@ export const createColors = base => {
     gray: '#eee'
   }
 
-  const color = chroma(base)
-  const [ hue, sat, lite ] = color.hsl()
+  const color = Color(base)
+  const [ hue, sat, lite ] = color.hsl().array()
   const hues = createHues(hue)
   hues.forEach(h => {
     const name = hueName(h)
-    const val = chroma.hsl(h, sat, lite)
+    const val = Color.hsl([ h, sat, lite ])
     colors[name] = val.hex()
   })
 
@@ -47,10 +47,10 @@ export const createColors = base => {
 }
 
 export const invertLuminance = base => {
-  const color = chroma(base)
-  const luminance = color.luminance()
-  const [ h, s ] = color.hsl()
-  const next = chroma.hsl(h, s, 1 - luminance)
+  const color = Color(base)
+  const luminance = color.luminosity()
+  const [ h, s ] = color.hsl().array()
+  const next = Color.hsl([ h, s, 1 - luminance ])
   return next.hex()
 }
 
