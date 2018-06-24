@@ -47,11 +47,10 @@ export const createColors = base => {
 }
 
 export const invertLuminance = base => {
-  const color = chroma(base)
-  const luminance = color.luminance()
-  const [ h, s ] = color.hsl()
-  const next = chroma.hsl(h, s, 1 - luminance)
-  return next.hex()
+  const luminance = chroma(base).luminance()
+  const l = 1 - luminance
+  const next = chroma(base).luminance(l).hex()
+  return next
 }
 
 export const colors = createColors('#06e')
