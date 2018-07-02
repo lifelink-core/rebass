@@ -18,7 +18,13 @@ const code = ({
 
   switch (type) {
     case '.':
-      return <LiveEditor code={code} scope={scope} />
+      return (
+        <LiveEditor
+          code={code}
+          scope={scope}
+          mode={lang.replace(/^(!|.)/, '')}
+        />
+      )
     case '!':
       return <LivePreview code={code} scope={scope} />
     default:

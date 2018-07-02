@@ -41,3 +41,15 @@ export default props =>
 
 [Rebass theme]: http://jxnblk.com/rebass/theming
 [Rebass Markdown]: https://github.com/jxnblk/rebass/tree/master/markdown
+
+### Live Example
+
+```.jsx
+<Button>Beep</Button>
+```
+
+```.mdx
+# Hello
+
+<Button>Beep</Button>
+```

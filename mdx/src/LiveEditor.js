@@ -9,8 +9,22 @@ import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider'
 import { Box } from 'rebass'
 import { color, borderColor } from 'styled-system'
 import styled from 'styled-components'
+import { MDXTag } from '@mdx-js/tag'
+import mdx from '@mdx-js/mdx'
 
-const transformCode = src => `<React.Fragment>${src}</React.Fragment>`
+// const transformCode = src => `<React.Fragment>${src}</React.Fragment>`
+const transformCode = mode => {
+  switch (mode) {
+    case 'mdx':
+      return str => mdx.sync(str)
+    default:
+      return str => `<React.Fragment>${str}</React.Fragment>`
+  }
+}
+
+const mdxScope = {
+  MDXTag
+}
 
 const Preview = styled(LivePreview)([], {
   padding: '16px',
@@ -48,14 +62,16 @@ export default withMDXComponents(({
   code,
   scope,
   components,
+  mode = 'jsx',
   render
 }) => (
   <Box mb={4}>
+    <pre>{mode}</pre>
     <LiveProvider
       code={code}
       scope={{ ...components, ...scope }}
       mountStylesheet={false}
-      transformCode={transformCode}>
+      transformCode={transformCode(mode)}>
       {typeof render === 'function' ? (
         render({
           code,
