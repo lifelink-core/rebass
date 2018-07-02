@@ -12,11 +12,15 @@ import styled from 'styled-components'
 import { MDXTag } from '@mdx-js/tag'
 import mdx from '@mdx-js/mdx'
 
+const removeExport = str => {
+  return str.replace(/^(\s)*export default \({components}\) =>/, '')
+}
+
 // const transformCode = src => `<React.Fragment>${src}</React.Fragment>`
 const transformCode = mode => {
   switch (mode) {
     case 'mdx':
-      return str => mdx.sync(str)
+      return str => removeExport(mdx.sync(str))
     default:
       return str => `<React.Fragment>${str}</React.Fragment>`
   }
@@ -69,7 +73,12 @@ export default withMDXComponents(({
     <pre>{mode}</pre>
     <LiveProvider
       code={code}
-      scope={{ ...components, ...scope }}
+      scope={{
+        ...mdxScope,
+        ...components,
+        ...scope,
+        components,
+      }}
       mountStylesheet={false}
       transformCode={transformCode(mode)}>
       {typeof render === 'function' ? (
