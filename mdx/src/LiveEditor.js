@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   LiveProvider,
   LivePreview,
@@ -18,7 +19,7 @@ const Preview = styled(LivePreview)([], {
   borderRadius: '2px 2px 0 0',
 }, borderColor)
 Preview.defaultProps = {
-  borderColor: 'gray'
+  borderColor: 'lightgray'
 }
 
 const Editor = styled(LiveEditor)([], {
@@ -27,13 +28,17 @@ const Editor = styled(LiveEditor)([], {
   margin: 0,
   padding: '16px',
   borderRadius: '0 0 2px 2px',
+  borderStyle: 'solid',
+  borderWidth: '1px',
   '&:focus': {
     outline: 'none',
-    boxShadow: 'inset 0 0 0 1px #6cf',
+    // borderColor: 'currentcolor'
+    // boxShadow: 'inset 0 0 0 1px #6cf',
   }
-}, color)
+}, color, borderColor)
 Editor.defaultProps = {
-  bg: 'gray'
+  bg: 'lightgray',
+  borderColor: 'lightgray',
 }
 
 const Err = styled(LiveError)([], {
@@ -44,33 +49,53 @@ const Err = styled(LiveError)([], {
   backgroundColor: 'red'
 })
 
-export default withMDXComponents(({
-  code,
-  scope,
-  components,
-  render
-}) => (
-  <Box mb={4}>
-    <LiveProvider
-      code={code}
-      scope={{ ...components, ...scope }}
-      mountStylesheet={false}
-      transformCode={transformCode}>
-      {typeof render === 'function' ? (
-        render({
-          code,
-          scope: {
-            ...components,
-            ...scope
-          }
-        })
-      ) : (
-        <React.Fragment>
-          <Preview />
-          <Editor />
-          <Err />
-        </React.Fragment>
-      )}
-    </LiveProvider>
-  </Box>
-))
+export default withMDXComponents(class extends React.Component {
+  static displayName = 'LiveEditor'
+
+  static propTypes = {
+    code: PropTypes.string.isRequired,
+    scope: PropTypes.object,
+    components: PropTypes.object,
+    render: PropTypes.func,
+    previewProps: PropTypes.object,
+    editorProps: PropTypes.object,
+    errorProps: PropTypes.object,
+  }
+
+  render () {
+    const {
+      code,
+      scope,
+      components,
+      render,
+      previewProps,
+      editorProps,
+      errorProps,
+    } = this.props
+    return (
+      <Box mb={4}>
+        <LiveProvider
+          code={code}
+          scope={{ ...components, ...scope }}
+          mountStylesheet={false}
+          transformCode={transformCode}>
+          {typeof render === 'function' ? (
+            render({
+              code,
+              scope: {
+                ...components,
+                ...scope
+              }
+            })
+          ) : (
+            <React.Fragment>
+              <Preview {...previewProps} />
+              <Editor {...editorProps} />
+              <Err {...errorProps} />
+            </React.Fragment>
+          )}
+        </LiveProvider>
+      </Box>
+    )
+  }
+})

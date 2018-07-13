@@ -39,5 +39,17 @@ export default props =>
 - `components` override specific components or add custom components to code fence examples
 - `props` props for [Rebass Markdown][] components to control styling
 
+### LiveEditor
+
+```.jsx
+<Button>
+  Editable
+</Button>
+```
+
+```!jsx
+<Button>Live</Button>
+```
+
 [Rebass theme]: http://jxnblk.com/rebass/theming
 [Rebass Markdown]: https://github.com/jxnblk/rebass/tree/master/markdown
