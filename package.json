@@ -35,7 +35,7 @@
     "clean-tag": "^1.1.0",
     "grid-styled": "^4.3.2",
     "prop-types": "^15.6.0",
-    "styled-system": "^3.0.0",
+    "styled-system": "^3.0.1",
     "system-components": "^2.2.3"
   },
   "devDependencies": {
