@@ -1,16 +1,18 @@
 import sys from 'system-components'
+import { themeGet } from 'styled-system'
 import Button from './Button'
 
 export const ButtonTransparent = sys({
   is: Button,
   bg: 'transparent',
   color: 'inherit',
-  focus: {
+}, props => ({
+  '&:focus': {
     outline: 'none',
     boxShadow: 'none',
-    color: 'blue',
+    color: themeGet('colors.blue', 'blue')(props),
   }
-})
+}))
 
 ButtonTransparent.displayName = 'ButtonTransparent'
 

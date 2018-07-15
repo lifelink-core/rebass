@@ -29,7 +29,7 @@ exports[`BackgroundImage src renders 1`] = `
 
 <div
   className="c0"
-  src="hello.png"
+  image="hello.png"
 />
 `;
 

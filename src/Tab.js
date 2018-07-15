@@ -1,4 +1,5 @@
 import sys from 'system-components'
+import { themeGet } from 'styled-system'
 
 export const Tab = sys({
   is: 'a',
@@ -9,12 +10,12 @@ export const Tab = sys({
   color: 'inherit',
   borderBottom: 2,
   borderColor: 'transparent',
-  hover: {
-    color: 'blue'
+}, props => ({
+  textDecoration: 'none',
+  '&:hover': {
+    color: themeGet('colors.blue', 'blue')(props)
   }
-}, {
-  textDecoration: 'none'
-})
+}))
 
 Tab.displayName = 'Tab'
 

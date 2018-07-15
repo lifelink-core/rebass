@@ -1,4 +1,5 @@
 import sys from 'system-components'
+import { themeGet } from 'styled-system'
 
 export const Dot = sys({
   is: 'button',
@@ -9,19 +10,20 @@ export const Dot = sys({
   borderRadius: 99999,
   border: 4,
   borderColor: 'transparent',
-  focus: {
-    backgroundColor: 'blue'
-  },
-  hover: {
-    backgroundColor: 'blue'
-  },
-  disabledStyle: {
-    opacity: 1/4
-  }
 }, {
   appearance: 'none',
   backgroundClip: 'padding-box'
-},
+}, props => ({
+  '&:focus': {
+    backgroundColor: themeGet('colors.blue', 'blue')(props)
+  },
+  '&:hover': {
+    backgroundColor: themeGet('colors.blue', 'blue')(props)
+  },
+  '&:disabled': {
+    opacity: 1/4
+  }
+}),
   'size',
   'space',
   'color'

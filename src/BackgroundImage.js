@@ -1,14 +1,18 @@
+import React from 'react'
 import sys from 'system-components'
 import { style } from 'styled-system'
 
+// todo: alias src prop
 const bgImage = style({
   prop: 'image',
-  alias: 'src',
   cssProperty: 'backgroundImage',
   getter: n => `url(${n})`
 })
 
-export const BackgroundImage = sys({
+const mapProps = Component => ({ src, ...props }) =>
+  <Component image={src} {...props} />
+
+export const BackgroundImage = mapProps(sys({
   width: 1,
   ratio: 3/4,
   backgroundSize: 'cover',
@@ -20,7 +24,7 @@ export const BackgroundImage = sys({
   'backgroundPosition',
   'space',
   'color',
-)
+))
 
 BackgroundImage.displayName = 'BackgroundImage'
 

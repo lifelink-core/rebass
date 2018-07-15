@@ -51,6 +51,17 @@ export const shadows = [
   `inset 0 0 0 1px ${colors.gray}, 0 0 4px ${colors.gray}`,
 ]
 
+export const buttons = {
+  primary: {
+    // todo: hook into theme dynamically
+    // functional theme?
+    color: colors.white,
+    backgroundColor: colors.blue,
+  },
+  outline: {},
+  transparent: {},
+}
+
 export default {
   breakpoints,
   space,
@@ -60,4 +71,5 @@ export default {
   colors,
   radii,
   shadows,
+  buttons,
 }
