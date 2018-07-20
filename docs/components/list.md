@@ -96,12 +96,9 @@ Extends [Box](#box)
 ### Props
 
 - `flexWrap`
-- `wrap`
 - `flexDirection`
 - `alignItems`
-- `align`
 - `justifyContent`
-- `justify`
 
 ## Box
 
@@ -137,7 +134,6 @@ Extends [Box](#box)
 ### Props
 
 - `fontFamily`
-- `font`
 
 ## Provider
 
@@ -173,10 +169,6 @@ Extends [Button](#button)
 />
 ```
 
-### Props
-
-- `hover`
-
 ## ButtonCircle
 
 Extends [Button](#button)
@@ -200,10 +192,6 @@ Extends [Button](#button)
   Hello
 </ButtonTransparent>
 ```
-
-### Props
-
-- `focus`
 
 ## Link
 
@@ -268,11 +256,9 @@ Extends [ButtonTransparent](#buttontransparent)
 ### Props
 
 - `fontFamily`
-- `font`
 - `fontSize`
 - `fontWeight`
 - `textAlign`
-- `align`
 - `lineHeight`
 
 ## Heading
@@ -289,9 +275,7 @@ Extends [ButtonTransparent](#buttontransparent)
 - `fontWeight`
 - `lineHeight`
 - `fontFamily`
-- `font`
 - `textAlign`
-- `align`
 
 ## Subhead
 
@@ -397,7 +381,6 @@ Extends [Text](#text)
 
 - `fontSize`
 - `fontFamily`
-- `font`
 
 ## Code
 
@@ -411,7 +394,6 @@ Extends [Text](#text)
 
 - `fontSize`
 - `fontFamily`
-- `font`
 
 ## Samp
 
@@ -447,7 +429,6 @@ Extends [Text](#text)
 
 - `fontSize`
 - `alignItems`
-- `align`
 
 ## Input
 
@@ -592,9 +573,7 @@ Extends [Text](#text)
 - `width`
 - `ratio`
 - `backgroundSize`
-- `bgSize`
 - `backgroundPosition`
-- `bgPosition`
 
 ## Avatar
 
@@ -784,16 +763,11 @@ Extends [Flex](#flex)
 
 - `flexDirection`
 - `alignItems`
-- `align`
 - `justifyContent`
-- `justify`
 - `backgroundSize`
-- `bgSize`
 - `backgroundPosition`
-- `bgPosition`
 - `minHeight`
 - `backgroundImage`
-- `bgImage`
 
 ## Message
 
@@ -808,8 +782,6 @@ Extends [Flex](#flex)
 ### Props
 
 - `fontWeight`
-- `alignItems`
-- `align`
 - `minHeight`
 
 ## Toolbar
@@ -832,8 +804,6 @@ Extends [Flex](#flex)
 
 ### Props
 
-- `alignItems`
-- `align`
 - `minHeight`
 
 ## Tabs
@@ -881,7 +851,6 @@ Extends [Flex](#flex)
 - `borderBottom`
 - `borderLeft`
 - `borderColor`
-- `hover`
 
 ## Badge
 
@@ -913,8 +882,6 @@ Extends [Badge](#badge)
 ### Props
 
 - `size`
-- `alignItems`
-- `align`
 - `borderRadius`
 - `textAlign`
 
@@ -938,9 +905,6 @@ Extends [Badge](#badge)
 - `borderBottom`
 - `borderLeft`
 - `borderColor`
-- `focus`
-- `hover`
-- `disabledStyle`
 
 ## Arrow
 

@@ -25,4 +25,4 @@ px |  | space | responsive
 py |  | space | responsive
 color | blue | colors | responsive
 bg | gray | colors | responsive
-borderRadius | 2 | radii | default
+borderRadius | 2 | radii | responsive

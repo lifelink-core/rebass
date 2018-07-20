@@ -33,9 +33,9 @@ py |  | space | responsive
 flexDirection | column | N/A | responsive
 alignItems | center | N/A | responsive
 justifyContent | center | N/A | responsive
-backgroundSize | cover | N/A | default
-backgroundPosition | center | N/A | default
+backgroundSize | cover | N/A | responsive
+backgroundPosition | center | N/A | responsive
 minHeight | 80vh | minHeights | responsive
 color | white | colors | responsive
 bg | black | colors | responsive
-backgroundImage |  | N/A | default
+backgroundImage |  | N/A | responsive

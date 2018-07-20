@@ -28,5 +28,5 @@ px | 2 | space | responsive
 py | 1 | space | responsive
 color | white | colors | responsive
 bg | blue | colors | responsive
-fontWeight | bold | fontWeights | default
-borderRadius | 2 | radii | default
+fontWeight | bold | fontWeights | responsive
+borderRadius | 2 | radii | responsive

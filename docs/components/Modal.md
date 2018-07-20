@@ -40,7 +40,7 @@ px |  | space | responsive
 py |  | space | responsive
 color |  | colors | responsive
 bg | white | colors | responsive
-borderRadius | 2 | radii | default
+borderRadius | 2 | radii | responsive
 maxWidth | 100vw | maxWidths | responsive
 maxHeight | 100vh | maxHeights | responsive
 width |  | N/A | responsive

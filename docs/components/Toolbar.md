@@ -34,5 +34,4 @@ px | 2 | space | responsive
 py |  | space | responsive
 color | white | colors | responsive
 bg | black | colors | responsive
-alignItems |  | N/A | responsive
 minHeight | 48px | minHeights | responsive

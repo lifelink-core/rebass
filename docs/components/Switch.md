@@ -10,7 +10,7 @@ prop | default | theme key | style type
 ---|---|---|---
 color | blue | colors | responsive
 bg |  | colors | responsive
-borderRadius | 99999px | radii | default
+borderRadius | 99999px | radii | responsive
 m |  | space | responsive
 mt |  | space | responsive
 mr |  | space | responsive

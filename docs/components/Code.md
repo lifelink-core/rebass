@@ -9,7 +9,7 @@
 prop | default | theme key | style type
 ---|---|---|---
 fontSize | 1 | fontSizes | responsive
-fontFamily | mono | fonts | default
+fontFamily | mono | fonts | responsive
 m |  | space | responsive
 mt |  | space | responsive
 mr |  | space | responsive

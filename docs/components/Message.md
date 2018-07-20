@@ -24,8 +24,7 @@ pb |  | space | responsive
 pl |  | space | responsive
 px | 3 | space | responsive
 py | 2 | space | responsive
-fontWeight | bold | fontWeights | default
+fontWeight | bold | fontWeights | responsive
 color | white | colors | responsive
 bg | blue | colors | responsive
-alignItems |  | N/A | responsive
 minHeight | 48px | minHeights | responsive

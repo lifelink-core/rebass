@@ -31,8 +31,8 @@ borderTop |  | borders | responsive
 borderRight |  | borders | responsive
 borderBottom |  | borders | responsive
 borderLeft |  | borders | responsive
-borderColor | gray | colors | default
-boxShadow | 1 | shadows | default
-borderRadius | 2 | radii | default
+borderColor | gray | colors | responsive
+boxShadow | 1 | shadows | responsive
+borderRadius | 2 | radii | responsive
 color | inherit | colors | responsive
 bg | transparent | colors | responsive

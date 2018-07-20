@@ -27,13 +27,10 @@ py |  | space | responsive
 size | 16 | N/A | responsive
 color |  | colors | responsive
 bg | darken | colors | responsive
-borderRadius | 99999 | radii | default
+borderRadius | 99999 | radii | responsive
 border | 4 | borders | responsive
 borderTop |  | borders | responsive
 borderRight |  | borders | responsive
 borderBottom |  | borders | responsive
 borderLeft |  | borders | responsive
-borderColor | transparent | colors | default
-focus | [object Object] | N/A | pseudo
-hover | [object Object] | N/A | pseudo
-disabledStyle | [object Object] | N/A | pseudo
+borderColor | transparent | colors | responsive

@@ -16,7 +16,7 @@ borderTop |  | borders | responsive
 borderRight |  | borders | responsive
 borderBottom |  | borders | responsive
 borderLeft |  | borders | responsive
-borderColor | gray | colors | default
+borderColor | gray | colors | responsive
 m |  | space | responsive
 mt |  | space | responsive
 mr |  | space | responsive

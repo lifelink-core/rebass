@@ -12,7 +12,7 @@ prop | default | theme key | style type
 color | inherit | colors | responsive
 bg | transparent | colors | responsive
 fontSize | 1 | fontSizes | responsive
-fontWeight | bold | fontWeights | default
+fontWeight | bold | fontWeights | responsive
 m |  | space | responsive
 mt |  | space | responsive
 mr |  | space | responsive

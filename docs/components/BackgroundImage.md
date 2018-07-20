@@ -10,9 +10,9 @@
 prop | default | theme key | style type
 ---|---|---|---
 width | 1 | N/A | responsive
-ratio | 0.75 | N/A | default
-backgroundSize | cover | N/A | default
-backgroundPosition | center | N/A | default
+ratio | 0.75 | N/A | responsive
+backgroundSize | cover | N/A | responsive
+backgroundPosition | center | N/A | responsive
 m |  | space | responsive
 mt |  | space | responsive
 mr |  | space | responsive

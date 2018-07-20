@@ -30,5 +30,5 @@ px |  | space | responsive
 py |  | space | responsive
 color |  | colors | responsive
 bg | white | colors | responsive
-borderRadius | 2 | radii | default
-boxShadow | 2 | shadows | default
+borderRadius | 2 | radii | responsive
+boxShadow | 2 | shadows | responsive

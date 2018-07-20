@@ -22,13 +22,13 @@ prop | default | theme key | style type
 ---|---|---|---
 color |  | colors | responsive
 bg | white | colors | responsive
-borderRadius | 2 | radii | default
+borderRadius | 2 | radii | responsive
 border | 1 | borders | responsive
 borderTop |  | borders | responsive
 borderRight |  | borders | responsive
 borderBottom |  | borders | responsive
 borderLeft |  | borders | responsive
-borderColor | gray | colors | default
+borderColor | gray | colors | responsive
 m |  | space | responsive
 mt |  | space | responsive
 mr |  | space | responsive

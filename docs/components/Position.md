@@ -27,7 +27,7 @@ px |  | space | responsive
 py |  | space | responsive
 color |  | colors | responsive
 bg |  | colors | responsive
-zIndex |  | N/A | default
+zIndex |  | N/A | responsive
 top |  | N/A | responsive
 right |  | N/A | responsive
 bottom |  | N/A | responsive

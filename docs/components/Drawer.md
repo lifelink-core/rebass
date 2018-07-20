@@ -21,5 +21,5 @@ position | fixed | N/A | responsive
 color | white | colors | responsive
 bg | black | colors | responsive
 width | 320 | N/A | responsive
-zIndex |  | N/A | default
+zIndex |  | N/A | responsive
 height |  | heights | responsive

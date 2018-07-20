@@ -24,4 +24,4 @@ pb |  | space | responsive
 pl |  | space | responsive
 px | 3 | space | responsive
 py | 2 | space | responsive
-borderRadius | 9999 | radii | default
+borderRadius | 9999 | radii | responsive
