@@ -31,7 +31,7 @@ const themes = {
       mono: '"Roboto Mono", Menlo, monospace',
     },
     colors: {
-      black: '#222',
+      black: '#444',
       blue: '#0cf',
       primary: '#0cf',
     }
