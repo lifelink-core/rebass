@@ -23,6 +23,7 @@ const navOrder = [
   'extending',
   'server-side-rendering',
   'colors',
+  'themes',
   'components',
 ]
 
