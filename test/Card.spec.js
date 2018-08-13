@@ -1,10 +1,10 @@
 
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import Shallow from 'react-test-renderer/shallow'
 import expect from 'expect'
 import { Card, Base } from '../src'
 
-const renderer = TestUtils.createRenderer()
+const renderer = new Shallow()
 
 describe('Card', () => {
   let tree
@@ -46,4 +46,3 @@ describe('Card', () => {
     })
   })
 })
-

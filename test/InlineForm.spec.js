@@ -1,10 +1,10 @@
 
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import Shallow from 'react-test-renderer/shallow'
 import expect from 'expect'
 import { InlineForm, Input, ButtonOutline, Base } from '../src'
 
-const renderer = TestUtils.createRenderer()
+const renderer = new Shallow()
 
 describe('InlineForm', () => {
   let tree, input, button
@@ -108,4 +108,3 @@ describe('InlineForm', () => {
     })
   })
 })
-

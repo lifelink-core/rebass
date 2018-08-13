@@ -1,10 +1,10 @@
 
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import Shallow from 'react-test-renderer/shallow'
 import expect from 'expect'
 import { Switch, Base } from '../src'
 
-const renderer = TestUtils.createRenderer()
+const renderer = new Shallow()
 
 describe('Switch', () => {
   let tree, dot
@@ -49,4 +49,3 @@ describe('Switch', () => {
     })
   })
 })
-

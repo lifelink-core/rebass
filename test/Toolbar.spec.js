@@ -1,10 +1,10 @@
 
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import Shallow from 'react-test-renderer/shallow'
 import expect from 'expect'
 import { Toolbar, Base } from '../src'
 
-const renderer = TestUtils.createRenderer()
+const renderer = new Shallow()
 
 describe('Toolbar', () => {
   let tree
@@ -33,4 +33,3 @@ describe('Toolbar', () => {
     })
   })
 })
-

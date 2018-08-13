@@ -1,10 +1,10 @@
 
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import Shallow from 'react-test-renderer/shallow'
 import expect from 'expect'
 import { SequenceMap, Base, LinkBlock } from '../src'
 
-const renderer = TestUtils.createRenderer()
+const renderer = new Shallow()
 
 describe('SequenceMap', () => {
   let tree
@@ -170,4 +170,3 @@ describe('SequenceMap.Step', () => {
     })
   })
 })
-

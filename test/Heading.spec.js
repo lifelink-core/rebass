@@ -1,10 +1,10 @@
 
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import Shallow from 'react-test-renderer/shallow'
 import expect from 'expect'
 import { config, Heading, Base } from '../src'
 
-const renderer = TestUtils.createRenderer()
+const renderer = new Shallow()
 
 describe('Heading', () => {
   const { fontSizes } = config
@@ -203,4 +203,3 @@ describe('Heading', () => {
     })
   })
 })
-

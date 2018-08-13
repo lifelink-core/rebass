@@ -1,12 +1,13 @@
 
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import TestUtils from 'react-dom/test-utils'
+import Shallow from 'react-test-renderer/shallow'
 import expect from 'expect'
 import jsdom from 'mocha-jsdom'
 import { Link } from 'react-router'
 import { config, Base, Button } from '../src'
 
-const renderer = TestUtils.createRenderer()
+const renderer = new Shallow()
 
 describe('Base', () => {
   const { scale, colors, borderRadius } = config

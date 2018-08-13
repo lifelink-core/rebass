@@ -1,10 +1,10 @@
 
 import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import Shallow from 'react-test-renderer/shallow'
 import expect from 'expect'
 import { PageHeader, Heading, Base } from '../src'
 
-const renderer = TestUtils.createRenderer()
+const renderer = new Shallow()
 
 describe('PageHeader', () => {
   let tree, heading, description
@@ -69,4 +69,3 @@ describe('PageHeader', () => {
     })
   })
 })
-
