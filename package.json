@@ -1,6 +1,6 @@
 {
-  "name": "rebass",
-  "version": "0.3.4",
+  "name": "rebass-modern",
+  "version": "0.3.5-beta1",
   "description": "Configurable React Stateless Functional UI Components",
   "author": "Brent Jackson",
   "license": "MIT",
